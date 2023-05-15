@@ -1,0 +1,12 @@
+X:\gradwork\BackupApplication\BackupApplication\bin\Debug\BackupApplication.exe.config
+X:\gradwork\BackupApplication\BackupApplication\bin\Debug\BackupApplication.exe
+X:\gradwork\BackupApplication\BackupApplication\bin\Debug\BackupApplication.pdb
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.csproj.AssemblyReference.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.csproj.SuggestedBindingRedirects.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.Form1.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.Properties.Resources.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.csproj.GenerateResource.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.csproj.CoreCompileInputs.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.exe
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.pdb
+X:\gradwork\BackupApplication\BackupApplication\obj\Debug\BackupApplication.Form2.resources
