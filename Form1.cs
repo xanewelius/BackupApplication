@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,10 @@ namespace BackupApplication
 {
     public partial class Form1 : Form
     {
+        public static string connect = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
+        private OleDbConnection myconnect;
+        OleDbCommand command;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +32,17 @@ namespace BackupApplication
         {
             Form3 form3 = new Form3();
             form3.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
+            this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
+        }
+
+        private void ghjkkgjhjkhlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.backupHistoryTableAdapter.Update(this.backUpAppDBDataSet.BackupHistory);
         }
     }
 }
