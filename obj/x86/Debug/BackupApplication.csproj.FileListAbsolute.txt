@@ -1,0 +1,14 @@
+X:\gradwork\BackupApplication\BackupApplication\bin\x86\Debug\BackUpAppDB.accdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x86\Debug\BackupApplication.exe.config
+X:\gradwork\BackupApplication\BackupApplication\bin\x86\Debug\BackupApplication.exe
+X:\gradwork\BackupApplication\BackupApplication\bin\x86\Debug\BackupApplication.pdb
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.csproj.AssemblyReference.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.csproj.SuggestedBindingRedirects.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.Form1.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.Form2.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.Form3.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.Properties.Resources.resources
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.csproj.GenerateResource.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.csproj.CoreCompileInputs.cache
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.exe
+X:\gradwork\BackupApplication\BackupApplication\obj\x86\Debug\BackupApplication.pdb

@@ -1,0 +1,57 @@
+{
+  "format": 1,
+  "restore": {
+    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {}
+  },
+  "projects": {
+    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
+        "projectName": "BackupApplication",
+        "projectPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
+        "packagesPath": "C:\\Users\\slkip\\.nuget\\packages\\",
+        "outputPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\slkip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
