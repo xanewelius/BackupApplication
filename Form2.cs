@@ -5,12 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.IO.Compression;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using System.Runtime.Remoting.Contexts;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 
 namespace BackupApplication
 {
@@ -20,9 +24,11 @@ namespace BackupApplication
         public static string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
         private OleDbConnection myconnect = new OleDbConnection(connectionString);
         
-
         string sourceFolder = ""; // Путь к исходной папке
         string targetFolder = ""; // Путь к целевой папке
+        string zipFilePath = "";
+        string sourceFolderPath = "";
+        string googleDriveFolderId = "15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI";
         string currentDate = DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss)"); // Форматирование текущей даты и времени
 
         public Form2()
@@ -30,31 +36,101 @@ namespace BackupApplication
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private static void SaveZipToGoogleDrive(string zipFilePath, string googleDriveFolderId)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            UserCredential credential;
+
+            try
             {
-                textBox1.Text = dialog.SelectedPath; // Set the full file path in the textbox
-                sourceFolder = dialog.SelectedPath; // Save the full file path in the variable
+                using (var stream = new FileStream("X:\\gradwork\\BackupApplication\\client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
+                {
+                    string credPath = "path_to_store_token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        clientSecrets: GoogleClientSecrets.Load(stream).Secrets,
+                        scopes: new[] { DriveService.Scope.Drive },
+                        user: "user",
+                        taskCancellationToken: CancellationToken.None,
+                        dataStore: new FileDataStore(credPath, true)).Result;
+                }
+
+                var service = new DriveService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "Your Application Name",
+                });
+
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = Path.GetFileName(zipFilePath),
+                    MimeType = "application/zip",
+                    Parents = new List<string> { googleDriveFolderId } // ID папки на Google Диске, куда нужно сохранить файл
+                };
+
+                FilesResource.CreateMediaUpload request;
+                using (var stream = new FileStream(zipFilePath, FileMode.Open))
+                {
+                    request = service.Files.Create(fileMetadata, stream, "application/zip");
+                    request.Upload();
+                }
+
+                var file = request.ResponseBody;
+                Console.WriteLine("File ID: " + file.Id);
+                MessageBox.Show("Резервное копирование на локальный накопитель выполнено успешно.");
             }
-            else
+            catch (Exception ex)
             {
-                textBox1.Text = ""; // Clear the textbox if no file was selected
+                MessageBox.Show("Ошибка при выполнении резервного копирования: " + ex.Message);
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SaveZipLocally(string sourceFolderPath, string zipFilePath)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                textBox2.Text = dialog.SelectedPath; // Set the full file path in the textbox
-                sourceFolder = dialog.SelectedPath; // Save the full file path in the variable
+                // Создание ZIP-файла
+                ZipFile.CreateFromDirectory(sourceFolderPath, zipFilePath);
+
+                MessageBox.Show("ZIP-файл успешно создан и сохранен.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при создании ZIP-файла: " + ex.Message);
+            }
+        }
+
+        // Первый текстбокс
+        // Отображение диалога выбора исходной папки
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var sourceFolderDialog = new FolderBrowserDialog();
+            DialogResult result = sourceFolderDialog.ShowDialog();
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(sourceFolderDialog.SelectedPath))
+            {
+                textBox1.Text = sourceFolderDialog.SelectedPath; // Установите полный путь к папке в текстовом поле
+                sourceFolderPath = sourceFolderDialog.SelectedPath; // Сохраните полный путь к папке в переменной
             }
             else
             {
-                textBox2.Text = ""; // Clear the textbox if no file was selected
+                textBox1.Text = ""; // Очистите текстовое поле, если папка не была выбрана
+            }
+        }
+
+        // Второй текстбокс
+        // Отображение диалога выбора пути сохранения ZIP-файла
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss"); // Генерация имени файла с использованием текущей даты и времени
+            saveFileDialog.Filter = "ZIP Archive|*.zip";
+            DialogResult saveResult = saveFileDialog.ShowDialog();
+            if (saveResult == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+            {
+                textBox2.Text = saveFileDialog.FileName; // Установите полный путь к файлу в текстовом поле
+                zipFilePath = saveFileDialog.FileName; // Сохраните полный путь к файлу в переменной
+            }
+            else
+            {
+                textBox2.Text = ""; // Очистите текстовое поле, если файл не был выбран
             }
         }
 
@@ -62,75 +138,18 @@ namespace BackupApplication
         {
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
             bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
+            //string zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
+            //string zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
 
             if (saveLocally)
             {
-                if (string.IsNullOrEmpty(targetFolder))
-                {
-                    MessageBox.Show("Пожалуйста, выберите целевую папку.");
-                    return;
-                }
-
-                string zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
-                string zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
-
-                try
-                {
-                    ZipFile.CreateFromDirectory(sourceFolder, zipFilePath, CompressionLevel.Optimal, true);
-                    MessageBox.Show("Резервное копирование на локальный накопитель выполнено успешно.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка при выполнении резервного копирования: " + ex.Message);
-                }
+                SaveZipLocally(sourceFolderPath, zipFilePath);
             }
 
             if (saveToDatabase)
             {
-                if (string.IsNullOrEmpty(sourceFolder))
-                {
-                    MessageBox.Show("Пожалуйста, выберите целевую папку.");
-                    return;
-                }
-                string checkboxValue = saveLocally ? "Database, locale" : "Database"; // Указывает как сохранялось
-                string zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
-                string zipFilePath = Path.Combine(sourceFolder, zipFileName); // Путь к создаваемому zip-файлу
-                ZipFile.CreateFromDirectory("C:\\Users\\slkip\\Desktop\\bac", zipFilePath, CompressionLevel.Optimal, true);
-
-                using (OleDbConnection connection = new OleDbConnection(connectionString))
-                {
-                    connection.Open();
-
-                    // Чтение содержимого файла в массив байтов
-                    byte[] fileBytes = File.ReadAllBytes(zipFilePath);
-
-                    // Создание SQL-запроса с параметрами
-                    string query = "INSERT INTO BackupHistory (FileName, BackupDate, BackupPath, BackupType, BackupFile) " +
-                        "VALUES (?, ?, ?, ?, ?)";
-                    try
-                    {
-                        using (OleDbCommand command = new OleDbCommand(query, connection))
-                        {
-                            // Добавление параметров
-                            command.Parameters.AddWithValue("FileName", Path.GetFileName(zipFilePath));
-                            command.Parameters.AddWithValue("BackupDate", "12/12/2022");
-                            command.Parameters.AddWithValue("BackupPath", "path_to_backup_folder");
-                            command.Parameters.AddWithValue("BackupType", checkboxValue);
-                            command.Parameters.AddWithValue("BackupFile", zipFilePath);
-
-                            // Выполнение запроса
-                            command.ExecuteNonQuery();
-                            MessageBox.Show("Резервное копирование на локальный накопитель выполнено успешно.");
-                            connection.Close();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ошибка при выполнении резервного копирования: " + ex.Message);
-                    }
-                }
+                SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
             }
-            //MessageBox.Show("Операции завершены.");
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -142,14 +161,15 @@ namespace BackupApplication
             }
             else
             {
-                textBox2.Enabled = false;
-                button2.Enabled = false;
+                textBox2.Enabled = true;
+                button2.Enabled = true;
             }
+            checkBox2.Checked = true; // Установка значения по умолчанию для checkBox1
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            checkBox1.Checked = true; // Установка значения по умолчанию для checkBox1
+            
         }
     }
 }

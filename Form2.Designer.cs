@@ -42,20 +42,20 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(12, 52);
+            this.checkBox1.Location = new System.Drawing.Point(94, 91);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(91, 17);
+            this.checkBox1.Size = new System.Drawing.Size(82, 17);
             this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "База данных";
+            this.checkBox1.Text = "Google disk";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(109, 52);
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(12, 91);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(76, 17);
             this.checkBox2.TabIndex = 1;
@@ -83,16 +83,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(12, 91);
+            this.textBox2.Location = new System.Drawing.Point(12, 65);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(236, 20);
             this.textBox2.TabIndex = 4;
             // 
             // button2
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(254, 90);
+            this.button2.Location = new System.Drawing.Point(254, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 5;
@@ -122,7 +120,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 72);
+            this.label2.Location = new System.Drawing.Point(12, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(201, 13);
             this.label2.TabIndex = 8;

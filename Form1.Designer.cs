@@ -39,19 +39,13 @@
             this.ghjkkgjhjkhlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jhbkhjkbhjkbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.backUpAppDBDataSet = new BackupApplication.BackUpAppDBDataSet();
             this.backupHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backUpAppDBDataSet = new BackupApplication.BackUpAppDBDataSet();
             this.backupHistoryTableAdapter = new BackupApplication.BackUpAppDBDataSetTableAdapters.BackupHistoryTableAdapter();
-            this.iDProcDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupFileDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -125,70 +119,25 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDProcDataGridViewTextBoxColumn,
-            this.fileNameDataGridViewTextBoxColumn,
-            this.backupDateDataGridViewTextBoxColumn,
-            this.backupPathDataGridViewTextBoxColumn,
-            this.backupTypeDataGridViewTextBoxColumn,
-            this.backupFileDataGridViewImageColumn});
-            this.dataGridView1.DataSource = this.backupHistoryBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(243, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(638, 410);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // backUpAppDBDataSet
-            // 
-            this.backUpAppDBDataSet.DataSetName = "BackUpAppDBDataSet";
-            this.backUpAppDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // backupHistoryBindingSource
             // 
             this.backupHistoryBindingSource.DataMember = "BackupHistory";
             this.backupHistoryBindingSource.DataSource = this.backUpAppDBDataSet;
             // 
+            // backUpAppDBDataSet
+            // 
+            this.backUpAppDBDataSet.DataSetName = "BackUpAppDBDataSet";
+            this.backUpAppDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // backupHistoryTableAdapter
             // 
             this.backupHistoryTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDProcDataGridViewTextBoxColumn
-            // 
-            this.iDProcDataGridViewTextBoxColumn.DataPropertyName = "IDProc";
-            this.iDProcDataGridViewTextBoxColumn.HeaderText = "IDProc";
-            this.iDProcDataGridViewTextBoxColumn.Name = "iDProcDataGridViewTextBoxColumn";
-            // 
-            // fileNameDataGridViewTextBoxColumn
-            // 
-            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.HeaderText = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
-            // 
-            // backupDateDataGridViewTextBoxColumn
-            // 
-            this.backupDateDataGridViewTextBoxColumn.DataPropertyName = "BackupDate";
-            this.backupDateDataGridViewTextBoxColumn.HeaderText = "BackupDate";
-            this.backupDateDataGridViewTextBoxColumn.Name = "backupDateDataGridViewTextBoxColumn";
-            // 
-            // backupPathDataGridViewTextBoxColumn
-            // 
-            this.backupPathDataGridViewTextBoxColumn.DataPropertyName = "BackupPath";
-            this.backupPathDataGridViewTextBoxColumn.HeaderText = "BackupPath";
-            this.backupPathDataGridViewTextBoxColumn.Name = "backupPathDataGridViewTextBoxColumn";
-            // 
-            // backupTypeDataGridViewTextBoxColumn
-            // 
-            this.backupTypeDataGridViewTextBoxColumn.DataPropertyName = "BackupType";
-            this.backupTypeDataGridViewTextBoxColumn.HeaderText = "BackupType";
-            this.backupTypeDataGridViewTextBoxColumn.Name = "backupTypeDataGridViewTextBoxColumn";
-            // 
-            // backupFileDataGridViewImageColumn
-            // 
-            this.backupFileDataGridViewImageColumn.DataPropertyName = "BackupFile";
-            this.backupFileDataGridViewImageColumn.HeaderText = "BackupFile";
-            this.backupFileDataGridViewImageColumn.Name = "backupFileDataGridViewImageColumn";
             // 
             // Form1
             // 
@@ -213,8 +162,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,12 +183,6 @@
         private BackUpAppDBDataSet backUpAppDBDataSet;
         private System.Windows.Forms.BindingSource backupHistoryBindingSource;
         private BackUpAppDBDataSetTableAdapters.BackupHistoryTableAdapter backupHistoryTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDProcDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backupDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backupPathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backupTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn backupFileDataGridViewImageColumn;
     }
 }
 

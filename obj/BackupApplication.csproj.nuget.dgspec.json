@@ -34,6 +34,10 @@
       "frameworks": {
         "net48": {
           "dependencies": {
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.60.0.3034, )"
+            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.1, )"

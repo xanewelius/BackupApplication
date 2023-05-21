@@ -78,3 +78,14 @@ X:\gradwork\BackupApplication\BackupApplication\obj\x64\Debug\BackupApplication.
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\System.Data.SqlClient.dll
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\System.Data.SqlClient.xml
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDB.accdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.PlatformServices.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.pdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Auth.PlatformServices.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Auth.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Auth.pdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Core.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Core.pdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.v3.dll
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.v3.pdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Newtonsoft.Json.dll
