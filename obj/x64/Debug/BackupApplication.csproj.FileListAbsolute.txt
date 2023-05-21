@@ -89,3 +89,4 @@ X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Core.p
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.v3.dll
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.v3.pdb
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Newtonsoft.Json.dll
+X:\gradwork\BackupApplication\BackupApplication\obj\x64\Debug\BackupApplication.AboutBox1.resources

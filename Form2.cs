@@ -205,34 +205,41 @@ namespace BackupApplication
             bool autoSave = checkBox3.Checked; // Флаг на автосохранение
             googleDriveFolderId = textBox3.Text; // 15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI
 
-            string currentDate = DateTime.Now.ToString("yyyyMMddHHmmss"); // Форматирование текущей даты и времени
-            //zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
-            //zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
-
-            if (saveLocally)
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text))
             {
-                if (autoSave)
-                {
-                    SaveZipLocally(sourceFolderPath, zipFilePath);
-                } 
-                else
-                {
-                    SaveZipLocally(sourceFolderPath, zipFilePath);
-                }
+                MessageBox.Show("Пожалуйста, заполните все текстовые поля");
             }
-
-            if (saveToDatabase)
+            else
             {
-                if (autoSave)
+                string currentDate = DateTime.Now.ToString("yyyyMMddHHmmss"); // Форматирование текущей даты и времени
+                //zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
+                //zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
+
+                if (saveLocally)
                 {
-                    AutoTimerGoogleDrive();
+                    if (autoSave)
+                    {
+                        SaveZipLocally(sourceFolderPath, zipFilePath);
+                    }
+                    else
+                    {
+                        SaveZipLocally(sourceFolderPath, zipFilePath);
+                    }
                 }
-                else
+
+                if (saveToDatabase)
                 {
-                    SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
+                    if (autoSave)
+                    {
+                        AutoTimerGoogleDrive();
+                    }
+                    else
+                    {
+                        SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
+                    }
                 }
+                //AddFileData(zipFileName, DateTime.Now, zipFilePath, "1");
             }
-            //AddFileData(zipFileName, DateTime.Now, zipFilePath, "1");
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)

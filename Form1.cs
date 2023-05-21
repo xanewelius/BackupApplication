@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,13 +35,59 @@ namespace BackupApplication
             form3.Show();
         }
 
+        //Удаление
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Пожалуйста, заполните текстовое поле.");
+            }
+            else
+            {
+                try
+                {
+                    // Строка подключения к базе данных Microsoft Access
+                    string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
+
+                    // SQL-запрос на удаление записи по идентификатору
+                    string query = "DELETE FROM Files WHERE id = @Id";
+
+                    using (OleDbConnection connection = new OleDbConnection(connectionString))
+                    {
+                        // Открываем соединение с базой данных
+                        connection.Open();
+
+                        using (OleDbCommand command = new OleDbCommand(query, connection))
+                        {
+                            // Параметр запроса
+                            command.Parameters.AddWithValue("@Id", textBox1.Text);
+
+                            // Выполняем запрос
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    MessageBox.Show("Удаление прошло успешно!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при удаление данных: " + ex.Message);
+                }
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
             this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
         }
 
-        private void ghjkkgjhjkhlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 AboutBox = new AboutBox1();
+            AboutBox.ShowDialog();
+        }
+
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.backupHistoryTableAdapter.Update(this.backUpAppDBDataSet.BackupHistory);
         }

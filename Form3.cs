@@ -44,14 +44,21 @@ namespace BackupApplication
         //Кнопка загрузки
         private void button2_Click(object sender, EventArgs e)
         {
-            int index;
-            string kod;
-            index = dataGridView1.CurrentRow.Index;
-            kod = dataGridView1[0, index].Value.ToString();
-            //string fileId = kod;
-            string fileId = "1BTXo_7Yy33PBoKOKCBlpwuL3h3pIr31o";
-            //"X:\\gradwork\\BackupApplication\\client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json"
-            DownloadFileFromGoogleDrive(fileId, destinationPath);
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Пожалуйста, заполните текстовое поле.");
+            }
+            else
+            {
+                int index;
+                string kod;
+                index = dataGridView1.CurrentRow.Index;
+                kod = dataGridView1[0, index].Value.ToString();
+                //string fileId = kod;
+                string fileId = "1BTXo_7Yy33PBoKOKCBlpwuL3h3pIr31o";
+                //"X:\\gradwork\\BackupApplication\\client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json"
+                DownloadFileFromGoogleDrive(fileId, destinationPath);
+            }
         }
 
         private static void DownloadFileFromGoogleDrive(string fileId, string destinationPath)
