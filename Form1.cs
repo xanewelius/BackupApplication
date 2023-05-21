@@ -25,13 +25,13 @@ namespace BackupApplication
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            form2.ShowDialog();
+            form2.Show(); // Show для того, чтобы можно было свернуть вкладку а не все приложение
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
-            form3.ShowDialog();
+            form3.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

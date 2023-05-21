@@ -30,14 +30,16 @@ namespace BackupApplication
         string zipFilePath = "";
         string sourceFolderPath = "";
         string zipFileName = "";
-        string googleDriveFolderId = "15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI";
-        
+        string zipFilePathAuto = "";
+        string googleDriveFolderId = "";
+        bool isBackupCompleted = false;
+
         public Form2()
         {
             InitializeComponent();
         }
 
-        private static void SaveZipToGoogleDrive(string zipFilePath, string googleDriveFolderId)
+        private void SaveZipToGoogleDrive(string zipFilePath, string googleDriveFolderId)
         {
             UserCredential credential;
 
@@ -62,7 +64,7 @@ namespace BackupApplication
 
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
-                    Name = Path.GetFileName("backup_" + DateTime.Now.ToString("yyyyMMddHHmmss")),
+                    Name = Path.GetFileName(zipFilePath),
                     MimeType = "application/zip",
                     Parents = new List<string> { googleDriveFolderId } // ID папки на Google Диске, куда нужно сохранить файл
                 };
@@ -76,7 +78,11 @@ namespace BackupApplication
 
                 var file = request.ResponseBody;
                 Console.WriteLine("File ID: " + file.Id);
-                MessageBox.Show("Резервное копирование на локальный накопитель выполнено успешно.");
+                if (!isBackupCompleted)
+                {
+                    isBackupCompleted = true;
+                    MessageBox.Show("Резервное копирование на Google Disk выполнено успешно.");
+                } 
             }
             catch (Exception ex)
             {
@@ -88,6 +94,9 @@ namespace BackupApplication
         {
             try
             {
+                zipFileName = "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".zip"; // Имя zip-файла с добавленной датой и временем
+                zipFilePath = Path.Combine(zipFilePath, zipFileName); // Путь к создаваемому zip-файлу
+                zipFilePathAuto = zipFilePath;
                 // Создание ZIP-файла
                 ZipFile.CreateFromDirectory(sourceFolderPath, zipFilePath);
 
@@ -152,8 +161,12 @@ namespace BackupApplication
             DialogResult saveResult = saveFileDialog.ShowDialog();
             if (saveResult == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
             {
-                textBox2.Text = saveFileDialog.FileName; // Установите полный путь к файлу в текстовом поле
-                zipFilePath = saveFileDialog.FileName; // Сохраните полный путь к файлу в переменной
+                //textBox2.Text = saveFileDialog.FileName; // Установите полный путь к файлу в текстовом поле
+                //zipFilePathAuto = saveFileDialog.FileName; // Сохраните полный путь к файлу в переменной
+                string selectedFilePath = saveFileDialog.FileName;
+                string directoryPath = Path.GetDirectoryName(selectedFilePath); // Получите только путь к директории без имени файла
+                textBox2.Text = directoryPath; // Установите полный путь к директории в текстовом поле
+                zipFilePath = directoryPath;
             }
             else
             {
@@ -161,7 +174,7 @@ namespace BackupApplication
             }
         }
 
-        public void AutoTimer()
+        public void AutoTimerGoogleDrive()
         {
             timer = new System.Timers.Timer();
             timer.Interval = 10000; // Интервал в миллисекундах (здесь 10 секунд)
@@ -171,7 +184,17 @@ namespace BackupApplication
 
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
+            bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
+            bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
+
+            //if (saveLocally)
+            //{
+            //    SaveZipLocally(sourceFolderPath, zipFilePath);
+            //}
+            if (saveToDatabase)
+            {
+                SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
+            }
         }
 
 
@@ -180,6 +203,7 @@ namespace BackupApplication
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
             bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
             bool autoSave = checkBox3.Checked; // Флаг на автосохранение
+            googleDriveFolderId = textBox3.Text; // 15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI
 
             string currentDate = DateTime.Now.ToString("yyyyMMddHHmmss"); // Форматирование текущей даты и времени
             //zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
@@ -201,11 +225,11 @@ namespace BackupApplication
             {
                 if (autoSave)
                 {
-                    AutoTimer();
+                    AutoTimerGoogleDrive();
                 }
                 else
                 {
-                    SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
+                    SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
                 }
             }
             //AddFileData(zipFileName, DateTime.Now, zipFilePath, "1");
