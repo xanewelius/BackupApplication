@@ -15,22 +15,23 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using System.Security.AccessControl;
 
 namespace BackupApplication
 {
     public partial class Form2 : Form
     {
-
+        private System.Timers.Timer timer;
+        // Строка подключения к базе данных Microsoft Access
         public static string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
-        private OleDbConnection myconnect = new OleDbConnection(connectionString);
         
         string sourceFolder = ""; // Путь к исходной папке
         string targetFolder = ""; // Путь к целевой папке
         string zipFilePath = "";
         string sourceFolderPath = "";
+        string zipFileName = "";
         string googleDriveFolderId = "15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI";
-        string currentDate = DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss)"); // Форматирование текущей даты и времени
-
+        
         public Form2()
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace BackupApplication
 
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
-                    Name = Path.GetFileName(zipFilePath),
+                    Name = Path.GetFileName("backup_" + DateTime.Now.ToString("yyyyMMddHHmmss")),
                     MimeType = "application/zip",
                     Parents = new List<string> { googleDriveFolderId } // ID папки на Google Диске, куда нужно сохранить файл
                 };
@@ -98,6 +99,31 @@ namespace BackupApplication
             }
         }
 
+        // Метод для добавления данных о файле в базу данных Microsoft Access
+        public void AddFileData(string fileName, DateTime uploadDate, string savePath, string saveType)
+        {
+            // SQL-запрос на добавление данных о файле
+            string query = "INSERT INTO Files (file_name, upload_date, save_path, save_type) VALUES (@FileName, @UploadDate, @SavePath, @SaveType)";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // Открываем соединение с базой данных
+                connection.Open();
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    // Параметры запроса
+                    command.Parameters.AddWithValue("@FileName", fileName);
+                    command.Parameters.AddWithValue("@UploadDate", uploadDate);
+                    command.Parameters.AddWithValue("@SavePath", savePath);
+                    command.Parameters.AddWithValue("@SaveType", saveType);
+
+                    // Выполняем запрос
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         // Первый текстбокс
         // Отображение диалога выбора исходной папки
         private void button1_Click(object sender, EventArgs e)
@@ -122,6 +148,7 @@ namespace BackupApplication
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss"); // Генерация имени файла с использованием текущей даты и времени
             saveFileDialog.Filter = "ZIP Archive|*.zip";
+            //zipFileName = saveFileDialog.FileName;
             DialogResult saveResult = saveFileDialog.ShowDialog();
             if (saveResult == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
             {
@@ -134,22 +161,54 @@ namespace BackupApplication
             }
         }
 
+        public void AutoTimer()
+        {
+            timer = new System.Timers.Timer();
+            timer.Interval = 10000; // Интервал в миллисекундах (здесь 10 секунд)
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
+        }
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
             bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
-            //string zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
-            //string zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
+            bool autoSave = checkBox3.Checked; // Флаг на автосохранение
+
+            string currentDate = DateTime.Now.ToString("yyyyMMddHHmmss"); // Форматирование текущей даты и времени
+            //zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
+            //zipFilePath = Path.Combine(targetFolder, zipFileName); // Путь к создаваемому zip-файлу
 
             if (saveLocally)
             {
-                SaveZipLocally(sourceFolderPath, zipFilePath);
+                if (autoSave)
+                {
+                    SaveZipLocally(sourceFolderPath, zipFilePath);
+                } 
+                else
+                {
+                    SaveZipLocally(sourceFolderPath, zipFilePath);
+                }
             }
 
             if (saveToDatabase)
             {
-                SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
+                if (autoSave)
+                {
+                    AutoTimer();
+                }
+                else
+                {
+                    SaveZipToGoogleDrive(zipFilePath, googleDriveFolderId);
+                }
             }
+            //AddFileData(zipFileName, DateTime.Now, zipFilePath, "1");
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -170,6 +229,11 @@ namespace BackupApplication
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

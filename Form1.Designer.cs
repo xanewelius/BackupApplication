@@ -64,7 +64,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(224, 66);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Загрузить с БД";
+            this.button2.Text = "Загрузить с Google Disk";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -74,7 +74,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(224, 66);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Удалить с БД";
+            this.button3.Text = "Удалить с реестра";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // textBox1
