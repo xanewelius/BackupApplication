@@ -38,14 +38,20 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.backupHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backUpAppDBDataSet = new BackupApplication.BackUpAppDBDataSet();
-            this.backupHistoryTableAdapter = new BackupApplication.BackUpAppDBDataSetTableAdapters.BackupHistoryTableAdapter();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backUpAppDBDataSet = new BackupApplication.BackUpAppDBDataSet();
+            this.backupHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backupHistoryTableAdapter = new BackupApplication.BackUpAppDBDataSetTableAdapters.BackupHistoryTableAdapter();
+            this.iDProcDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backupDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstBackupPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.secondBackupPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.googleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -114,25 +120,20 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDProcDataGridViewTextBoxColumn,
+            this.fileNameDataGridViewTextBoxColumn,
+            this.backupDateDataGridViewTextBoxColumn,
+            this.firstBackupPathDataGridViewTextBoxColumn,
+            this.secondBackupPathDataGridViewTextBoxColumn,
+            this.googleIDDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.backupHistoryBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(243, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(638, 410);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // backupHistoryBindingSource
-            // 
-            this.backupHistoryBindingSource.DataMember = "BackupHistory";
-            this.backupHistoryBindingSource.DataSource = this.backUpAppDBDataSet;
-            // 
-            // backUpAppDBDataSet
-            // 
-            this.backUpAppDBDataSet.DataSetName = "BackUpAppDBDataSet";
-            this.backUpAppDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // backupHistoryTableAdapter
-            // 
-            this.backupHistoryTableAdapter.ClearBeforeFill = true;
             // 
             // обновитьToolStripMenuItem
             // 
@@ -140,6 +141,56 @@
             this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
+            // 
+            // backUpAppDBDataSet
+            // 
+            this.backUpAppDBDataSet.DataSetName = "BackUpAppDBDataSet";
+            this.backUpAppDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // backupHistoryBindingSource
+            // 
+            this.backupHistoryBindingSource.DataMember = "BackupHistory";
+            this.backupHistoryBindingSource.DataSource = this.backUpAppDBDataSet;
+            // 
+            // backupHistoryTableAdapter
+            // 
+            this.backupHistoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDProcDataGridViewTextBoxColumn
+            // 
+            this.iDProcDataGridViewTextBoxColumn.DataPropertyName = "IDProc";
+            this.iDProcDataGridViewTextBoxColumn.HeaderText = "IDProc";
+            this.iDProcDataGridViewTextBoxColumn.Name = "iDProcDataGridViewTextBoxColumn";
+            // 
+            // fileNameDataGridViewTextBoxColumn
+            // 
+            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.HeaderText = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
+            // 
+            // backupDateDataGridViewTextBoxColumn
+            // 
+            this.backupDateDataGridViewTextBoxColumn.DataPropertyName = "BackupDate";
+            this.backupDateDataGridViewTextBoxColumn.HeaderText = "BackupDate";
+            this.backupDateDataGridViewTextBoxColumn.Name = "backupDateDataGridViewTextBoxColumn";
+            // 
+            // firstBackupPathDataGridViewTextBoxColumn
+            // 
+            this.firstBackupPathDataGridViewTextBoxColumn.DataPropertyName = "FirstBackupPath";
+            this.firstBackupPathDataGridViewTextBoxColumn.HeaderText = "FirstBackupPath";
+            this.firstBackupPathDataGridViewTextBoxColumn.Name = "firstBackupPathDataGridViewTextBoxColumn";
+            // 
+            // secondBackupPathDataGridViewTextBoxColumn
+            // 
+            this.secondBackupPathDataGridViewTextBoxColumn.DataPropertyName = "SecondBackupPath";
+            this.secondBackupPathDataGridViewTextBoxColumn.HeaderText = "SecondBackupPath";
+            this.secondBackupPathDataGridViewTextBoxColumn.Name = "secondBackupPathDataGridViewTextBoxColumn";
+            // 
+            // googleIDDataGridViewTextBoxColumn
+            // 
+            this.googleIDDataGridViewTextBoxColumn.DataPropertyName = "GoogleID";
+            this.googleIDDataGridViewTextBoxColumn.HeaderText = "GoogleID";
+            this.googleIDDataGridViewTextBoxColumn.Name = "googleIDDataGridViewTextBoxColumn";
             // 
             // Form1
             // 
@@ -164,8 +215,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backupHistoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,11 +231,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private BackUpAppDBDataSet backUpAppDBDataSet;
         private System.Windows.Forms.BindingSource backupHistoryBindingSource;
         private BackUpAppDBDataSetTableAdapters.BackupHistoryTableAdapter backupHistoryTableAdapter;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDProcDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn backupDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstBackupPathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn secondBackupPathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn googleIDDataGridViewTextBoxColumn;
     }
 }
 

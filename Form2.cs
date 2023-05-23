@@ -26,12 +26,13 @@ namespace BackupApplication
         public static string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
         
         string sourceFolder = ""; // Путь к исходной папке
-        string targetFolder = ""; // Путь к целевой папке
+        string currentDate = ""; // Путь к целевой папке
         string zipFilePath = "";
         string sourceFolderPath = "";
         string zipFileName = "";
         string zipFilePathAuto = "";
         string googleDriveFolderId = "";
+        string GoogleFileID = "";
         bool isBackupCompleted = false;
 
         public Form2()
@@ -39,7 +40,7 @@ namespace BackupApplication
             InitializeComponent();
         }
 
-        private void SaveZipToGoogleDrive(string zipFilePath, string googleDriveFolderId)
+        private void SaveZipToGoogleDrive(string sourceFolderPath, string zipFilePath, string googleDriveFolderId)
         {
             UserCredential credential;
 
@@ -77,11 +78,13 @@ namespace BackupApplication
                 }
 
                 var file = request.ResponseBody;
+                GoogleFileID = file.Id;
                 Console.WriteLine("File ID: " + file.Id);
                 if (!isBackupCompleted)
                 {
                     isBackupCompleted = true;
                     MessageBox.Show("Резервное копирование на Google Disk выполнено успешно.");
+                    //AddFileData()
                 } 
             }
             catch (Exception ex)
@@ -94,7 +97,8 @@ namespace BackupApplication
         {
             try
             {
-                zipFileName = "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".zip"; // Имя zip-файла с добавленной датой и временем
+                currentDate = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+                zipFileName = "backup_" + currentDate + ".zip"; // Имя zip-файла с добавленной датой и временем
                 zipFilePath = Path.Combine(zipFilePath, zipFileName); // Путь к создаваемому zip-файлу
                 zipFilePathAuto = zipFilePath;
                 // Создание ZIP-файла
@@ -108,11 +112,11 @@ namespace BackupApplication
             }
         }
 
-        // Метод для добавления данных о файле в базу данных Microsoft Access
-        public void AddFileData(string fileName, DateTime uploadDate, string savePath, string saveType)
+        // Метод для добавления данных о файле в базу данных Microsoft Access. Таблица - BackupHistory
+        public void AddFileData(string fileName, string FirstBackupPath, string SecondBackupPath, string GoogleID)
         {
             // SQL-запрос на добавление данных о файле
-            string query = "INSERT INTO Files (file_name, upload_date, save_path, save_type) VALUES (@FileName, @UploadDate, @SavePath, @SaveType)";
+            string query = "INSERT INTO BackupHistory (FileName, BackupDate, FirstBackupPath, SecondBackupPath, GoogleID) VALUES (@FileName, @BackupDate, @FirstBackupPath, @SecondBackupPath, @GoogleID)";
 
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
@@ -123,10 +127,34 @@ namespace BackupApplication
                 {
                     // Параметры запроса
                     command.Parameters.AddWithValue("@FileName", fileName);
-                    command.Parameters.AddWithValue("@UploadDate", uploadDate);
-                    command.Parameters.AddWithValue("@SavePath", savePath);
-                    command.Parameters.AddWithValue("@SaveType", saveType);
+                    command.Parameters.AddWithValue("@BackupDate", currentDate);
+                    command.Parameters.AddWithValue("@FirstBackupPath", FirstBackupPath);
+                    command.Parameters.AddWithValue("@SecondBackupPath", SecondBackupPath);
+                    command.Parameters.AddWithValue("@GoogleID", GoogleID);
+                    // Выполняем запрос
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
+
+        // Метод для добавления данных о файле в базу данных Microsoft Access. Таблица - BackupHistory
+        public void AddGoogleFileData(string fileName, string GoogleID)
+        {
+            // SQL-запрос на добавление данных о файле
+            string query = "INSERT INTO BackUpGoogle (GoogleID, FileName, BackupDate) VALUES (@GoogleID, @FileName, @BackupDate)";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // Открываем соединение с базой данных
+                connection.Open();
+
+                using (OleDbCommand command = new OleDbCommand(query, connection))
+                {
+                    // Параметры запроса
+                    command.Parameters.AddWithValue("@GoogleID", GoogleID);
+                    command.Parameters.AddWithValue("@FileName", fileName);
+                    command.Parameters.AddWithValue("@BackupDate", currentDate);
                     // Выполняем запрос
                     command.ExecuteNonQuery();
                 }
@@ -187,13 +215,9 @@ namespace BackupApplication
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
             bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
 
-            //if (saveLocally)
-            //{
-            //    SaveZipLocally(sourceFolderPath, zipFilePath);
-            //}
             if (saveToDatabase)
             {
-                SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
+                SaveZipToGoogleDrive(sourceFolderPath, zipFilePathAuto, googleDriveFolderId);
             }
         }
 
@@ -225,8 +249,9 @@ namespace BackupApplication
                     {
                         SaveZipLocally(sourceFolderPath, zipFilePath);
                     }
+                    AddFileData(zipFileName, sourceFolderPath, zipFilePath, GoogleFileID);
                 }
-
+                
                 if (saveToDatabase)
                 {
                     if (autoSave)
@@ -235,10 +260,12 @@ namespace BackupApplication
                     }
                     else
                     {
-                        SaveZipToGoogleDrive(zipFilePathAuto, googleDriveFolderId);
+                        SaveZipToGoogleDrive(sourceFolderPath, zipFilePathAuto, googleDriveFolderId);
                     }
+                    AddGoogleFileData(zipFileName, GoogleFileID);
                 }
-                //AddFileData(zipFileName, DateTime.Now, zipFilePath, "1");
+                
+                
             }
         }
 
@@ -265,6 +292,12 @@ namespace BackupApplication
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //AddFileData(zipFileName, sourceFolderPath, zipFilePath, "1");
+            //AddGoogleFileData(zipFileName, "1");
         }
     }
 }

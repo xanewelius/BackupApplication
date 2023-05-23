@@ -51,12 +51,11 @@ namespace BackupApplication
             else
             {
                 int index;
-                string kod;
+                string fileId;
                 index = dataGridView1.CurrentRow.Index;
-                kod = dataGridView1[0, index].Value.ToString();
+                fileId = dataGridView1[0, index].Value.ToString();
                 //string fileId = kod;
-                string fileId = "1BTXo_7Yy33PBoKOKCBlpwuL3h3pIr31o";
-                //"X:\\gradwork\\BackupApplication\\client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json"
+                //string fileId = "1BTXo_7Yy33PBoKOKCBlpwuL3h3pIr31o";
                 DownloadFileFromGoogleDrive(fileId, destinationPath);
             }
         }
@@ -102,6 +101,13 @@ namespace BackupApplication
             {
                 MessageBox.Show("Ошибка при выполнении загрузки: " + ex.Message);
             }
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackUpGoogle". При необходимости она может быть перемещена или удалена.
+            this.backUpGoogleTableAdapter.Fill(this.backUpAppDBDataSet.BackUpGoogle);
+
         }
     }
 }

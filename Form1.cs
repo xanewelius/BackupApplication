@@ -79,6 +79,8 @@ namespace BackupApplication
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
             this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
+            this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
         }
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
