@@ -14,7 +14,7 @@ namespace BackupApplication
 {
     public partial class Form1 : Form
     {
-        public static string connect = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
+        public static string connect = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
         private OleDbConnection myconnect;
         OleDbCommand command;
 
@@ -47,10 +47,10 @@ namespace BackupApplication
                 try
                 {
                     // Строка подключения к базе данных Microsoft Access
-                    string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDB.accdb";
+                    string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
 
                     // SQL-запрос на удаление записи по идентификатору
-                    string query = "DELETE FROM Files WHERE id = @Id";
+                    string query = "DELETE FROM BackUpHistory WHERE id = @Id";
 
                     using (OleDbConnection connection = new OleDbConnection(connectionString))
                     {
@@ -67,6 +67,7 @@ namespace BackupApplication
                         }
                     }
                     MessageBox.Show("Удаление прошло успешно!");
+                    Update();
                 }
                 catch (Exception ex)
                 {
@@ -77,10 +78,14 @@ namespace BackupApplication
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
-            this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackupHistory". При необходимости она может быть перемещена или удалена.
-            this.backupHistoryTableAdapter.Fill(this.backUpAppDBDataSet.BackupHistory);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDataBaseDataSet.BackUpHistory". При необходимости она может быть перемещена или удалена.
+            this.backUpHistoryTableAdapter.Fill(this.backUpAppDataBaseDataSet.BackUpHistory);
+        }
+
+        private void Update()
+        {
+            this.backUpHistoryTableAdapter.Update(this.backUpAppDataBaseDataSet.BackUpHistory);
+            this.backUpHistoryTableAdapter.Fill(this.backUpAppDataBaseDataSet.BackUpHistory);
         }
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,7 +96,7 @@ namespace BackupApplication
 
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.backupHistoryTableAdapter.Update(this.backUpAppDBDataSet.BackupHistory);
+            Update();
         }
     }
 }

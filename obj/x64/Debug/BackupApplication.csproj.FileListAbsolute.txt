@@ -77,7 +77,6 @@ X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\zh-Hant\Microsoft.
 X:\gradwork\BackupApplication\BackupApplication\obj\x64\Debug\BackupApplication.csproj.CopyComplete
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\System.Data.SqlClient.dll
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\System.Data.SqlClient.xml
-X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDB.accdb
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.PlatformServices.dll
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.dll
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.pdb
@@ -90,3 +89,9 @@ X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Google.Apis.Drive.v3.pdb
 X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\Newtonsoft.Json.dll
 X:\gradwork\BackupApplication\BackupApplication\obj\x64\Debug\BackupApplication.AboutBox1.resources
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBase.accdb
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBaseDataSet.cs
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBaseDataSet.Designer.cs
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBaseDataSet.xsc
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBaseDataSet.xsd
+X:\gradwork\BackupApplication\BackupApplication\bin\x64\Debug\BackUpAppDataBaseDataSet.xss

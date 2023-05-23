@@ -20,21 +20,19 @@ namespace BackupApplication {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("BackUpAppDBDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("BackUpAppDataBaseDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class BackUpAppDBDataSet : global::System.Data.DataSet {
+    public partial class BackUpAppDataBaseDataSet : global::System.Data.DataSet {
         
         private BackUpGoogleDataTable tableBackUpGoogle;
         
-        private BackupHistoryDataTable tableBackupHistory;
-        
-        private global::System.Data.DataRelation relationBackUpFileObjBackupHistory;
+        private BackUpHistoryDataTable tableBackUpHistory;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BackUpAppDBDataSet() {
+        public BackUpAppDataBaseDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +43,7 @@ namespace BackupApplication {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected BackUpAppDBDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected BackUpAppDataBaseDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -61,8 +59,8 @@ namespace BackupApplication {
                 if ((ds.Tables["BackUpGoogle"] != null)) {
                     base.Tables.Add(new BackUpGoogleDataTable(ds.Tables["BackUpGoogle"]));
                 }
-                if ((ds.Tables["BackupHistory"] != null)) {
-                    base.Tables.Add(new BackupHistoryDataTable(ds.Tables["BackupHistory"]));
+                if ((ds.Tables["BackUpHistory"] != null)) {
+                    base.Tables.Add(new BackUpHistoryDataTable(ds.Tables["BackUpHistory"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -96,9 +94,9 @@ namespace BackupApplication {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public BackupHistoryDataTable BackupHistory {
+        public BackUpHistoryDataTable BackUpHistory {
             get {
-                return this.tableBackupHistory;
+                return this.tableBackUpHistory;
             }
         }
         
@@ -144,7 +142,7 @@ namespace BackupApplication {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            BackUpAppDBDataSet cln = ((BackUpAppDBDataSet)(base.Clone()));
+            BackUpAppDataBaseDataSet cln = ((BackUpAppDataBaseDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -172,8 +170,8 @@ namespace BackupApplication {
                 if ((ds.Tables["BackUpGoogle"] != null)) {
                     base.Tables.Add(new BackUpGoogleDataTable(ds.Tables["BackUpGoogle"]));
                 }
-                if ((ds.Tables["BackupHistory"] != null)) {
-                    base.Tables.Add(new BackupHistoryDataTable(ds.Tables["BackupHistory"]));
+                if ((ds.Tables["BackUpHistory"] != null)) {
+                    base.Tables.Add(new BackUpHistoryDataTable(ds.Tables["BackUpHistory"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -214,31 +212,26 @@ namespace BackupApplication {
                     this.tableBackUpGoogle.InitVars();
                 }
             }
-            this.tableBackupHistory = ((BackupHistoryDataTable)(base.Tables["BackupHistory"]));
+            this.tableBackUpHistory = ((BackUpHistoryDataTable)(base.Tables["BackUpHistory"]));
             if ((initTable == true)) {
-                if ((this.tableBackupHistory != null)) {
-                    this.tableBackupHistory.InitVars();
+                if ((this.tableBackUpHistory != null)) {
+                    this.tableBackUpHistory.InitVars();
                 }
             }
-            this.relationBackUpFileObjBackupHistory = this.Relations["BackUpFileObjBackupHistory"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "BackUpAppDBDataSet";
+            this.DataSetName = "BackUpAppDataBaseDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/BackUpAppDBDataSet.xsd";
+            this.Namespace = "http://tempuri.org/BackUpAppDataBaseDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableBackUpGoogle = new BackUpGoogleDataTable();
             base.Tables.Add(this.tableBackUpGoogle);
-            this.tableBackupHistory = new BackupHistoryDataTable();
-            base.Tables.Add(this.tableBackupHistory);
-            this.relationBackUpFileObjBackupHistory = new global::System.Data.DataRelation("BackUpFileObjBackupHistory", new global::System.Data.DataColumn[] {
-                        this.tableBackUpGoogle.GoogleIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBackupHistory.GoogleIDColumn}, false);
-            this.Relations.Add(this.relationBackUpFileObjBackupHistory);
+            this.tableBackUpHistory = new BackUpHistoryDataTable();
+            base.Tables.Add(this.tableBackUpHistory);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -249,7 +242,7 @@ namespace BackupApplication {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeBackupHistory() {
+        private bool ShouldSerializeBackUpHistory() {
             return false;
         }
         
@@ -264,7 +257,7 @@ namespace BackupApplication {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            BackUpAppDBDataSet ds = new BackUpAppDBDataSet();
+            BackUpAppDataBaseDataSet ds = new BackUpAppDataBaseDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -312,7 +305,7 @@ namespace BackupApplication {
         public delegate void BackUpGoogleRowChangeEventHandler(object sender, BackUpGoogleRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void BackupHistoryRowChangeEventHandler(object sender, BackupHistoryRowChangeEvent e);
+        public delegate void BackUpHistoryRowChangeEventHandler(object sender, BackUpHistoryRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -323,9 +316,9 @@ namespace BackupApplication {
             
             private global::System.Data.DataColumn columnGoogleID;
             
-            private global::System.Data.DataColumn columnFileName;
+            private global::System.Data.DataColumn columnBackUpName;
             
-            private global::System.Data.DataColumn columnBackupDate;
+            private global::System.Data.DataColumn columnBackUpDate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -370,17 +363,17 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn FileNameColumn {
+            public global::System.Data.DataColumn BackUpNameColumn {
                 get {
-                    return this.columnFileName;
+                    return this.columnBackUpName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn BackupDateColumn {
+            public global::System.Data.DataColumn BackUpDateColumn {
                 get {
-                    return this.columnBackupDate;
+                    return this.columnBackUpDate;
                 }
             }
             
@@ -421,22 +414,15 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackUpGoogleRow AddBackUpGoogleRow(string FileName, System.DateTime BackupDate) {
+            public BackUpGoogleRow AddBackUpGoogleRow(string GoogleID, string BackUpName, string BackUpDate) {
                 BackUpGoogleRow rowBackUpGoogleRow = ((BackUpGoogleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        FileName,
-                        BackupDate};
+                        GoogleID,
+                        BackUpName,
+                        BackUpDate};
                 rowBackUpGoogleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBackUpGoogleRow);
                 return rowBackUpGoogleRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackUpGoogleRow FindByGoogleID(int GoogleID) {
-                return ((BackUpGoogleRow)(this.Rows.Find(new object[] {
-                            GoogleID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -457,27 +443,22 @@ namespace BackupApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnGoogleID = base.Columns["GoogleID"];
-                this.columnFileName = base.Columns["FileName"];
-                this.columnBackupDate = base.Columns["BackupDate"];
+                this.columnBackUpName = base.Columns["BackUpName"];
+                this.columnBackUpDate = base.Columns["BackUpDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnGoogleID = new global::System.Data.DataColumn("GoogleID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnGoogleID = new global::System.Data.DataColumn("GoogleID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGoogleID);
-                this.columnFileName = new global::System.Data.DataColumn("FileName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFileName);
-                this.columnBackupDate = new global::System.Data.DataColumn("BackupDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBackupDate);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnGoogleID}, true));
-                this.columnGoogleID.AutoIncrement = true;
-                this.columnGoogleID.AutoIncrementSeed = -1;
-                this.columnGoogleID.AutoIncrementStep = -1;
-                this.columnGoogleID.AllowDBNull = false;
-                this.columnGoogleID.Unique = true;
-                this.columnFileName.MaxLength = 255;
+                this.columnBackUpName = new global::System.Data.DataColumn("BackUpName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBackUpName);
+                this.columnBackUpDate = new global::System.Data.DataColumn("BackUpDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBackUpDate);
+                this.columnGoogleID.MaxLength = 255;
+                this.columnBackUpName.MaxLength = 255;
+                this.columnBackUpDate.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -545,7 +526,7 @@ namespace BackupApplication {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BackUpAppDBDataSet ds = new BackUpAppDBDataSet();
+                BackUpAppDataBaseDataSet ds = new BackUpAppDataBaseDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -609,7 +590,7 @@ namespace BackupApplication {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class BackupHistoryDataTable : global::System.Data.TypedTableBase<BackupHistoryRow> {
+        public partial class BackUpHistoryDataTable : global::System.Data.TypedTableBase<BackUpHistoryRow> {
             
             private global::System.Data.DataColumn columnIDProc;
             
@@ -625,8 +606,8 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryDataTable() {
-                this.TableName = "BackupHistory";
+            public BackUpHistoryDataTable() {
+                this.TableName = "BackUpHistory";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -634,7 +615,7 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BackupHistoryDataTable(global::System.Data.DataTable table) {
+            internal BackUpHistoryDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -651,7 +632,7 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected BackupHistoryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected BackUpHistoryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -715,60 +696,57 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow this[int index] {
+            public BackUpHistoryRow this[int index] {
                 get {
-                    return ((BackupHistoryRow)(this.Rows[index]));
+                    return ((BackUpHistoryRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BackupHistoryRowChangeEventHandler BackupHistoryRowChanging;
+            public event BackUpHistoryRowChangeEventHandler BackUpHistoryRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BackupHistoryRowChangeEventHandler BackupHistoryRowChanged;
+            public event BackUpHistoryRowChangeEventHandler BackUpHistoryRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BackupHistoryRowChangeEventHandler BackupHistoryRowDeleting;
+            public event BackUpHistoryRowChangeEventHandler BackUpHistoryRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BackupHistoryRowChangeEventHandler BackupHistoryRowDeleted;
+            public event BackUpHistoryRowChangeEventHandler BackUpHistoryRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddBackupHistoryRow(BackupHistoryRow row) {
+            public void AddBackUpHistoryRow(BackUpHistoryRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow AddBackupHistoryRow(string FileName, System.DateTime BackupDate, string FirstBackupPath, string SecondBackupPath, BackUpGoogleRow parentBackUpGoogleRowByBackUpFileObjBackupHistory) {
-                BackupHistoryRow rowBackupHistoryRow = ((BackupHistoryRow)(this.NewRow()));
+            public BackUpHistoryRow AddBackUpHistoryRow(string FileName, string BackupDate, string FirstBackupPath, string SecondBackupPath, string GoogleID) {
+                BackUpHistoryRow rowBackUpHistoryRow = ((BackUpHistoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         FileName,
                         BackupDate,
                         FirstBackupPath,
                         SecondBackupPath,
-                        null};
-                if ((parentBackUpGoogleRowByBackUpFileObjBackupHistory != null)) {
-                    columnValuesArray[5] = parentBackUpGoogleRowByBackUpFileObjBackupHistory[0];
-                }
-                rowBackupHistoryRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowBackupHistoryRow);
-                return rowBackupHistoryRow;
+                        GoogleID};
+                rowBackUpHistoryRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowBackUpHistoryRow);
+                return rowBackUpHistoryRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow FindByIDProc(int IDProc) {
-                return ((BackupHistoryRow)(this.Rows.Find(new object[] {
+            public BackUpHistoryRow FindByIDProc(int IDProc) {
+                return ((BackUpHistoryRow)(this.Rows.Find(new object[] {
                             IDProc})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BackupHistoryDataTable cln = ((BackupHistoryDataTable)(base.Clone()));
+                BackUpHistoryDataTable cln = ((BackUpHistoryDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -776,7 +754,7 @@ namespace BackupApplication {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new BackupHistoryDataTable();
+                return new BackUpHistoryDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -797,13 +775,13 @@ namespace BackupApplication {
                 base.Columns.Add(this.columnIDProc);
                 this.columnFileName = new global::System.Data.DataColumn("FileName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFileName);
-                this.columnBackupDate = new global::System.Data.DataColumn("BackupDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnBackupDate = new global::System.Data.DataColumn("BackupDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBackupDate);
                 this.columnFirstBackupPath = new global::System.Data.DataColumn("FirstBackupPath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstBackupPath);
                 this.columnSecondBackupPath = new global::System.Data.DataColumn("SecondBackupPath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSecondBackupPath);
-                this.columnGoogleID = new global::System.Data.DataColumn("GoogleID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnGoogleID = new global::System.Data.DataColumn("GoogleID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGoogleID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDProc}, true));
@@ -813,34 +791,36 @@ namespace BackupApplication {
                 this.columnIDProc.AllowDBNull = false;
                 this.columnIDProc.Unique = true;
                 this.columnFileName.MaxLength = 255;
+                this.columnBackupDate.MaxLength = 255;
                 this.columnFirstBackupPath.MaxLength = 255;
                 this.columnSecondBackupPath.MaxLength = 255;
+                this.columnGoogleID.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow NewBackupHistoryRow() {
-                return ((BackupHistoryRow)(this.NewRow()));
+            public BackUpHistoryRow NewBackUpHistoryRow() {
+                return ((BackUpHistoryRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new BackupHistoryRow(builder);
+                return new BackUpHistoryRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(BackupHistoryRow);
+                return typeof(BackUpHistoryRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.BackupHistoryRowChanged != null)) {
-                    this.BackupHistoryRowChanged(this, new BackupHistoryRowChangeEvent(((BackupHistoryRow)(e.Row)), e.Action));
+                if ((this.BackUpHistoryRowChanged != null)) {
+                    this.BackUpHistoryRowChanged(this, new BackUpHistoryRowChangeEvent(((BackUpHistoryRow)(e.Row)), e.Action));
                 }
             }
             
@@ -848,8 +828,8 @@ namespace BackupApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.BackupHistoryRowChanging != null)) {
-                    this.BackupHistoryRowChanging(this, new BackupHistoryRowChangeEvent(((BackupHistoryRow)(e.Row)), e.Action));
+                if ((this.BackUpHistoryRowChanging != null)) {
+                    this.BackUpHistoryRowChanging(this, new BackUpHistoryRowChangeEvent(((BackUpHistoryRow)(e.Row)), e.Action));
                 }
             }
             
@@ -857,8 +837,8 @@ namespace BackupApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.BackupHistoryRowDeleted != null)) {
-                    this.BackupHistoryRowDeleted(this, new BackupHistoryRowChangeEvent(((BackupHistoryRow)(e.Row)), e.Action));
+                if ((this.BackUpHistoryRowDeleted != null)) {
+                    this.BackUpHistoryRowDeleted(this, new BackUpHistoryRowChangeEvent(((BackUpHistoryRow)(e.Row)), e.Action));
                 }
             }
             
@@ -866,14 +846,14 @@ namespace BackupApplication {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.BackupHistoryRowDeleting != null)) {
-                    this.BackupHistoryRowDeleting(this, new BackupHistoryRowChangeEvent(((BackupHistoryRow)(e.Row)), e.Action));
+                if ((this.BackUpHistoryRowDeleting != null)) {
+                    this.BackUpHistoryRowDeleting(this, new BackUpHistoryRowChangeEvent(((BackUpHistoryRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveBackupHistoryRow(BackupHistoryRow row) {
+            public void RemoveBackUpHistoryRow(BackUpHistoryRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -882,7 +862,7 @@ namespace BackupApplication {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BackUpAppDBDataSet ds = new BackUpAppDBDataSet();
+                BackUpAppDataBaseDataSet ds = new BackUpAppDataBaseDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -900,7 +880,7 @@ namespace BackupApplication {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "BackupHistoryDataTable";
+                attribute2.FixedValue = "BackUpHistoryDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -957,9 +937,14 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int GoogleID {
+            public string GoogleID {
                 get {
-                    return ((int)(this[this.tableBackUpGoogle.GoogleIDColumn]));
+                    try {
+                        return ((string)(this[this.tableBackUpGoogle.GoogleIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'GoogleID\' в таблице \'BackUpGoogle\' равно DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableBackUpGoogle.GoogleIDColumn] = value;
@@ -968,94 +953,95 @@ namespace BackupApplication {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string FileName {
+            public string BackUpName {
                 get {
                     try {
-                        return ((string)(this[this.tableBackUpGoogle.FileNameColumn]));
+                        return ((string)(this[this.tableBackUpGoogle.BackUpNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FileName\' в таблице \'BackUpGoogle\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'BackUpName\' в таблице \'BackUpGoogle\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackUpGoogle.FileNameColumn] = value;
+                    this[this.tableBackUpGoogle.BackUpNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime BackupDate {
+            public string BackUpDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableBackUpGoogle.BackupDateColumn]));
+                        return ((string)(this[this.tableBackUpGoogle.BackUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'BackupDate\' в таблице \'BackUpGoogle\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'BackUpDate\' в таблице \'BackUpGoogle\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackUpGoogle.BackupDateColumn] = value;
+                    this[this.tableBackUpGoogle.BackUpDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsFileNameNull() {
-                return this.IsNull(this.tableBackUpGoogle.FileNameColumn);
+            public bool IsGoogleIDNull() {
+                return this.IsNull(this.tableBackUpGoogle.GoogleIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetFileNameNull() {
-                this[this.tableBackUpGoogle.FileNameColumn] = global::System.Convert.DBNull;
+            public void SetGoogleIDNull() {
+                this[this.tableBackUpGoogle.GoogleIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsBackupDateNull() {
-                return this.IsNull(this.tableBackUpGoogle.BackupDateColumn);
+            public bool IsBackUpNameNull() {
+                return this.IsNull(this.tableBackUpGoogle.BackUpNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetBackupDateNull() {
-                this[this.tableBackUpGoogle.BackupDateColumn] = global::System.Convert.DBNull;
+            public void SetBackUpNameNull() {
+                this[this.tableBackUpGoogle.BackUpNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow[] GetBackupHistoryRows() {
-                if ((this.Table.ChildRelations["BackUpFileObjBackupHistory"] == null)) {
-                    return new BackupHistoryRow[0];
-                }
-                else {
-                    return ((BackupHistoryRow[])(base.GetChildRows(this.Table.ChildRelations["BackUpFileObjBackupHistory"])));
-                }
+            public bool IsBackUpDateNull() {
+                return this.IsNull(this.tableBackUpGoogle.BackUpDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBackUpDateNull() {
+                this[this.tableBackUpGoogle.BackUpDateColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class BackupHistoryRow : global::System.Data.DataRow {
+        public partial class BackUpHistoryRow : global::System.Data.DataRow {
             
-            private BackupHistoryDataTable tableBackupHistory;
+            private BackUpHistoryDataTable tableBackUpHistory;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BackupHistoryRow(global::System.Data.DataRowBuilder rb) : 
+            internal BackUpHistoryRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableBackupHistory = ((BackupHistoryDataTable)(this.Table));
+                this.tableBackUpHistory = ((BackUpHistoryDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int IDProc {
                 get {
-                    return ((int)(this[this.tableBackupHistory.IDProcColumn]));
+                    return ((int)(this[this.tableBackUpHistory.IDProcColumn]));
                 }
                 set {
-                    this[this.tableBackupHistory.IDProcColumn] = value;
+                    this[this.tableBackUpHistory.IDProcColumn] = value;
                 }
             }
             
@@ -1064,30 +1050,30 @@ namespace BackupApplication {
             public string FileName {
                 get {
                     try {
-                        return ((string)(this[this.tableBackupHistory.FileNameColumn]));
+                        return ((string)(this[this.tableBackUpHistory.FileNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FileName\' в таблице \'BackupHistory\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FileName\' в таблице \'BackUpHistory\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackupHistory.FileNameColumn] = value;
+                    this[this.tableBackUpHistory.FileNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime BackupDate {
+            public string BackupDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableBackupHistory.BackupDateColumn]));
+                        return ((string)(this[this.tableBackUpHistory.BackupDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'BackupDate\' в таблице \'BackupHistory\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'BackupDate\' в таблице \'BackUpHistory\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackupHistory.BackupDateColumn] = value;
+                    this[this.tableBackUpHistory.BackupDateColumn] = value;
                 }
             }
             
@@ -1096,14 +1082,14 @@ namespace BackupApplication {
             public string FirstBackupPath {
                 get {
                     try {
-                        return ((string)(this[this.tableBackupHistory.FirstBackupPathColumn]));
+                        return ((string)(this[this.tableBackUpHistory.FirstBackupPathColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FirstBackupPath\' в таблице \'BackupHistory\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'FirstBackupPath\' в таблице \'BackUpHistory\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackupHistory.FirstBackupPathColumn] = value;
+                    this[this.tableBackUpHistory.FirstBackupPathColumn] = value;
                 }
             }
             
@@ -1112,102 +1098,91 @@ namespace BackupApplication {
             public string SecondBackupPath {
                 get {
                     try {
-                        return ((string)(this[this.tableBackupHistory.SecondBackupPathColumn]));
+                        return ((string)(this[this.tableBackUpHistory.SecondBackupPathColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'SecondBackupPath\' в таблице \'BackupHistory\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'SecondBackupPath\' в таблице \'BackUpHistory\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackupHistory.SecondBackupPathColumn] = value;
+                    this[this.tableBackUpHistory.SecondBackupPathColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int GoogleID {
+            public string GoogleID {
                 get {
                     try {
-                        return ((int)(this[this.tableBackupHistory.GoogleIDColumn]));
+                        return ((string)(this[this.tableBackUpHistory.GoogleIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'GoogleID\' в таблице \'BackupHistory\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'GoogleID\' в таблице \'BackUpHistory\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBackupHistory.GoogleIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackUpGoogleRow BackUpGoogleRow {
-                get {
-                    return ((BackUpGoogleRow)(this.GetParentRow(this.Table.ParentRelations["BackUpFileObjBackupHistory"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["BackUpFileObjBackupHistory"]);
+                    this[this.tableBackUpHistory.GoogleIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFileNameNull() {
-                return this.IsNull(this.tableBackupHistory.FileNameColumn);
+                return this.IsNull(this.tableBackUpHistory.FileNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFileNameNull() {
-                this[this.tableBackupHistory.FileNameColumn] = global::System.Convert.DBNull;
+                this[this.tableBackUpHistory.FileNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsBackupDateNull() {
-                return this.IsNull(this.tableBackupHistory.BackupDateColumn);
+                return this.IsNull(this.tableBackUpHistory.BackupDateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetBackupDateNull() {
-                this[this.tableBackupHistory.BackupDateColumn] = global::System.Convert.DBNull;
+                this[this.tableBackUpHistory.BackupDateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsFirstBackupPathNull() {
-                return this.IsNull(this.tableBackupHistory.FirstBackupPathColumn);
+                return this.IsNull(this.tableBackUpHistory.FirstBackupPathColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetFirstBackupPathNull() {
-                this[this.tableBackupHistory.FirstBackupPathColumn] = global::System.Convert.DBNull;
+                this[this.tableBackUpHistory.FirstBackupPathColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSecondBackupPathNull() {
-                return this.IsNull(this.tableBackupHistory.SecondBackupPathColumn);
+                return this.IsNull(this.tableBackUpHistory.SecondBackupPathColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetSecondBackupPathNull() {
-                this[this.tableBackupHistory.SecondBackupPathColumn] = global::System.Convert.DBNull;
+                this[this.tableBackUpHistory.SecondBackupPathColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsGoogleIDNull() {
-                return this.IsNull(this.tableBackupHistory.GoogleIDColumn);
+                return this.IsNull(this.tableBackUpHistory.GoogleIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetGoogleIDNull() {
-                this[this.tableBackupHistory.GoogleIDColumn] = global::System.Convert.DBNull;
+                this[this.tableBackUpHistory.GoogleIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1249,22 +1224,22 @@ namespace BackupApplication {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class BackupHistoryRowChangeEvent : global::System.EventArgs {
+        public class BackUpHistoryRowChangeEvent : global::System.EventArgs {
             
-            private BackupHistoryRow eventRow;
+            private BackUpHistoryRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRowChangeEvent(BackupHistoryRow row, global::System.Data.DataRowAction action) {
+            public BackUpHistoryRowChangeEvent(BackUpHistoryRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BackupHistoryRow Row {
+            public BackUpHistoryRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1280,7 +1255,7 @@ namespace BackupApplication {
         }
     }
 }
-namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
+namespace BackupApplication.BackUpAppDataBaseDataSetTableAdapters {
     
     
     /// <summary>
@@ -1405,46 +1380,24 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "BackUpGoogle";
             tableMapping.ColumnMappings.Add("GoogleID", "GoogleID");
-            tableMapping.ColumnMappings.Add("FileName", "FileName");
-            tableMapping.ColumnMappings.Add("BackupDate", "BackupDate");
+            tableMapping.ColumnMappings.Add("BackUpName", "BackUpName");
+            tableMapping.ColumnMappings.Add("BackUpDate", "BackUpDate");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `BackUpGoogle` WHERE ((`GoogleID` = ?) AND ((? = 1 AND `FileName` IS " +
-                "NULL) OR (`FileName` = ?)) AND ((? = 1 AND `BackupDate` IS NULL) OR (`BackupDate" +
-                "` = ?)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FileName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackupDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `BackUpGoogle` (`FileName`, `BackupDate`) VALUES (?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `BackUpGoogle` (`GoogleID`, `BackUpName`, `BackUpDate`) VALUES (?, ?," +
+                " ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `BackUpGoogle` SET `FileName` = ?, `BackupDate` = ? WHERE ((`GoogleID` = ?" +
-                ") AND ((? = 1 AND `FileName` IS NULL) OR (`FileName` = ?)) AND ((? = 1 AND `Back" +
-                "upDate` IS NULL) OR (`BackupDate` = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FileName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackupDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GoogleID", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackUpName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackUpName", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackUpDate", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackUpDate", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::BackupApplication.Properties.Settings.Default.BackUpAppDBConnectionString;
+            this._connection.ConnectionString = global::BackupApplication.Properties.Settings.Default.BackUpAppDataBaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1453,7 +1406,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GoogleID, FileName, BackupDate FROM BackUpGoogle";
+            this._commandCollection[0].CommandText = "SELECT GoogleID, BackUpName, BackUpDate FROM BackUpGoogle";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1461,7 +1414,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BackUpAppDBDataSet.BackUpGoogleDataTable dataTable) {
+        public virtual int Fill(BackUpAppDataBaseDataSet.BackUpGoogleDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1474,9 +1427,9 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BackUpAppDBDataSet.BackUpGoogleDataTable GetData() {
+        public virtual BackUpAppDataBaseDataSet.BackUpGoogleDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BackUpAppDBDataSet.BackUpGoogleDataTable dataTable = new BackUpAppDBDataSet.BackUpGoogleDataTable();
+            BackUpAppDataBaseDataSet.BackUpGoogleDataTable dataTable = new BackUpAppDataBaseDataSet.BackUpGoogleDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1484,14 +1437,14 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BackUpAppDBDataSet.BackUpGoogleDataTable dataTable) {
+        public virtual int Update(BackUpAppDataBaseDataSet.BackUpGoogleDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BackUpAppDBDataSet dataSet) {
+        public virtual int Update(BackUpAppDataBaseDataSet dataSet) {
             return this.Adapter.Update(dataSet, "BackUpGoogle");
         }
         
@@ -1513,57 +1466,25 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_GoogleID, string Original_FileName, global::System.Nullable<global::System.DateTime> Original_BackupDate) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_GoogleID));
-            if ((Original_FileName == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FileName));
-            }
-            if ((Original_BackupDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_BackupDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string FileName, global::System.Nullable<global::System.DateTime> BackupDate) {
-            if ((FileName == null)) {
+        public virtual int Insert(string GoogleID, string BackUpName, string BackUpDate) {
+            if ((GoogleID == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(FileName));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(GoogleID));
             }
-            if ((BackupDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(BackupDate.Value));
+            if ((BackUpName == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(BackUpName));
+            }
+            if ((BackUpDate == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(BackUpDate));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1580,56 +1501,6 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                 }
             }
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FileName, global::System.Nullable<global::System.DateTime> BackupDate, int Original_GoogleID, string Original_FileName, global::System.Nullable<global::System.DateTime> Original_BackupDate) {
-            if ((FileName == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(FileName));
-            }
-            if ((BackupDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(BackupDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_GoogleID));
-            if ((Original_FileName == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_FileName));
-            }
-            if ((Original_BackupDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_BackupDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
     }
     
     /// <summary>
@@ -1641,7 +1512,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class BackupHistoryTableAdapter : global::System.ComponentModel.Component {
+    public partial class BackUpHistoryTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.OleDb.OleDbDataAdapter _adapter;
         
@@ -1655,7 +1526,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BackupHistoryTableAdapter() {
+        public BackUpHistoryTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1752,7 +1623,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "BackupHistory";
+            tableMapping.DataSetTable = "BackUpHistory";
             tableMapping.ColumnMappings.Add("IDProc", "IDProc");
             tableMapping.ColumnMappings.Add("FileName", "FileName");
             tableMapping.ColumnMappings.Add("BackupDate", "BackupDate");
@@ -1760,58 +1631,23 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SecondBackupPath", "SecondBackupPath");
             tableMapping.ColumnMappings.Add("GoogleID", "GoogleID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `BackupHistory` WHERE ((`IDProc` = ?) AND ((? = 1 AND `FileName` IS NULL) OR (`FileName` = ?)) AND ((? = 1 AND `BackupDate` IS NULL) OR (`BackupDate` = ?)) AND ((? = 1 AND `FirstBackupPath` IS NULL) OR (`FirstBackupPath` = ?)) AND ((? = 1 AND `SecondBackupPath` IS NULL) OR (`SecondBackupPath` = ?)) AND ((? = 1 AND `GoogleID` IS NULL) OR (`GoogleID` = ?)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDProc", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDProc", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FileName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackupDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FirstBackupPath", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FirstBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_SecondBackupPath", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_SecondBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `BackupHistory` (`FileName`, `BackupDate`, `FirstBackupPath`, `Second" +
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `BackUpHistory` (`FileName`, `BackupDate`, `FirstBackupPath`, `Second" +
                 "BackupPath`, `GoogleID`) VALUES (?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackupDate", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SecondBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `BackupHistory` SET `FileName` = ?, `BackupDate` = ?, `FirstBackupPath` = ?, `SecondBackupPath` = ?, `GoogleID` = ? WHERE ((`IDProc` = ?) AND ((? = 1 AND `FileName` IS NULL) OR (`FileName` = ?)) AND ((? = 1 AND `BackupDate` IS NULL) OR (`BackupDate` = ?)) AND ((? = 1 AND `FirstBackupPath` IS NULL) OR (`FirstBackupPath` = ?)) AND ((? = 1 AND `SecondBackupPath` IS NULL) OR (`SecondBackupPath` = ?)) AND ((? = 1 AND `GoogleID` IS NULL) OR (`GoogleID` = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SecondBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDProc", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDProc", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FileName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FileName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FileName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackupDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackupDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackupDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FirstBackupPath", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FirstBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstBackupPath", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_SecondBackupPath", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_SecondBackupPath", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SecondBackupPath", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GoogleID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GoogleID", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GoogleID", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::BackupApplication.Properties.Settings.Default.BackUpAppDBConnectionString;
+            this._connection.ConnectionString = global::BackupApplication.Properties.Settings.Default.BackUpAppDataBaseConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1821,7 +1657,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDProc, FileName, BackupDate, FirstBackupPath, SecondBackupPath, GoogleID " +
-                "FROM BackupHistory";
+                "FROM BackUpHistory";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1829,7 +1665,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BackUpAppDBDataSet.BackupHistoryDataTable dataTable) {
+        public virtual int Fill(BackUpAppDataBaseDataSet.BackUpHistoryDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1842,9 +1678,9 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BackUpAppDBDataSet.BackupHistoryDataTable GetData() {
+        public virtual BackUpAppDataBaseDataSet.BackUpHistoryDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BackUpAppDBDataSet.BackupHistoryDataTable dataTable = new BackUpAppDBDataSet.BackupHistoryDataTable();
+            BackUpAppDataBaseDataSet.BackUpHistoryDataTable dataTable = new BackUpAppDataBaseDataSet.BackUpHistoryDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1852,15 +1688,15 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BackUpAppDBDataSet.BackupHistoryDataTable dataTable) {
+        public virtual int Update(BackUpAppDataBaseDataSet.BackUpHistoryDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BackUpAppDBDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "BackupHistory");
+        public virtual int Update(BackUpAppDataBaseDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "BackUpHistory");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1881,81 +1717,19 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_IDProc, string Original_FileName, global::System.Nullable<global::System.DateTime> Original_BackupDate, string Original_FirstBackupPath, string Original_SecondBackupPath, global::System.Nullable<int> Original_GoogleID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_IDProc));
-            if ((Original_FileName == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_FileName));
-            }
-            if ((Original_BackupDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_BackupDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_FirstBackupPath == null)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_FirstBackupPath));
-            }
-            if ((Original_SecondBackupPath == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_SecondBackupPath));
-            }
-            if ((Original_GoogleID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_GoogleID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string FileName, global::System.Nullable<global::System.DateTime> BackupDate, string FirstBackupPath, string SecondBackupPath, global::System.Nullable<int> GoogleID) {
+        public virtual int Insert(string FileName, string BackupDate, string FirstBackupPath, string SecondBackupPath, string GoogleID) {
             if ((FileName == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(FileName));
             }
-            if ((BackupDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(BackupDate.Value));
+            if ((BackupDate == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(BackupDate));
             }
             if ((FirstBackupPath == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -1969,11 +1743,11 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(SecondBackupPath));
             }
-            if ((GoogleID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(GoogleID.Value));
+            if ((GoogleID == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(GoogleID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1987,98 +1761,6 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string FileName, global::System.Nullable<global::System.DateTime> BackupDate, string FirstBackupPath, string SecondBackupPath, global::System.Nullable<int> GoogleID, int Original_IDProc, string Original_FileName, global::System.Nullable<global::System.DateTime> Original_BackupDate, string Original_FirstBackupPath, string Original_SecondBackupPath, global::System.Nullable<int> Original_GoogleID) {
-            if ((FileName == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(FileName));
-            }
-            if ((BackupDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(BackupDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((FirstBackupPath == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(FirstBackupPath));
-            }
-            if ((SecondBackupPath == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(SecondBackupPath));
-            }
-            if ((GoogleID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(GoogleID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_IDProc));
-            if ((Original_FileName == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_FileName));
-            }
-            if ((Original_BackupDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_BackupDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_FirstBackupPath == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_FirstBackupPath));
-            }
-            if ((Original_SecondBackupPath == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_SecondBackupPath));
-            }
-            if ((Original_GoogleID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_GoogleID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
         }
@@ -2098,7 +1780,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         
         private BackUpGoogleTableAdapter _backUpGoogleTableAdapter;
         
-        private BackupHistoryTableAdapter _backupHistoryTableAdapter;
+        private BackUpHistoryTableAdapter _backUpHistoryTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2134,12 +1816,12 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public BackupHistoryTableAdapter BackupHistoryTableAdapter {
+        public BackUpHistoryTableAdapter BackUpHistoryTableAdapter {
             get {
-                return this._backupHistoryTableAdapter;
+                return this._backUpHistoryTableAdapter;
             }
             set {
-                this._backupHistoryTableAdapter = value;
+                this._backUpHistoryTableAdapter = value;
             }
         }
         
@@ -2166,9 +1848,9 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                             && (this._backUpGoogleTableAdapter.Connection != null))) {
                     return this._backUpGoogleTableAdapter.Connection;
                 }
-                if (((this._backupHistoryTableAdapter != null) 
-                            && (this._backupHistoryTableAdapter.Connection != null))) {
-                    return this._backupHistoryTableAdapter.Connection;
+                if (((this._backUpHistoryTableAdapter != null) 
+                            && (this._backUpHistoryTableAdapter.Connection != null))) {
+                    return this._backUpHistoryTableAdapter.Connection;
                 }
                 return null;
             }
@@ -2186,7 +1868,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                 if ((this._backUpGoogleTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._backupHistoryTableAdapter != null)) {
+                if ((this._backUpHistoryTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2198,7 +1880,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(BackUpAppDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(BackUpAppDataBaseDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._backUpGoogleTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.BackUpGoogle.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -2209,12 +1891,12 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._backupHistoryTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.BackupHistory.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._backUpHistoryTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BackUpHistory.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._backupHistoryTableAdapter.Update(updatedRows));
+                    result = (result + this._backUpHistoryTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -2226,7 +1908,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(BackUpAppDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(BackUpAppDataBaseDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._backUpGoogleTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.BackUpGoogle.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -2236,11 +1918,11 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._backupHistoryTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.BackupHistory.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._backUpHistoryTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BackUpHistory.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._backupHistoryTableAdapter.Update(addedRows));
+                    result = (result + this._backUpHistoryTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -2252,13 +1934,13 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(BackUpAppDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(BackUpAppDataBaseDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._backupHistoryTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.BackupHistory.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._backUpHistoryTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BackUpHistory.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._backupHistoryTableAdapter.Update(deletedRows));
+                    result = (result + this._backUpHistoryTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -2302,7 +1984,7 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(BackUpAppDBDataSet dataSet) {
+        public virtual int UpdateAll(BackUpAppDataBaseDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
@@ -2314,8 +1996,8 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
-            if (((this._backupHistoryTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._backupHistoryTableAdapter.Connection) == false))) {
+            if (((this._backUpHistoryTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._backUpHistoryTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -2360,13 +2042,13 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._backUpGoogleTableAdapter.Adapter);
                     }
                 }
-                if ((this._backupHistoryTableAdapter != null)) {
-                    revertConnections.Add(this._backupHistoryTableAdapter, this._backupHistoryTableAdapter.Connection);
-                    this._backupHistoryTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
-                    this._backupHistoryTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
-                    if (this._backupHistoryTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._backupHistoryTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._backupHistoryTableAdapter.Adapter);
+                if ((this._backUpHistoryTableAdapter != null)) {
+                    revertConnections.Add(this._backUpHistoryTableAdapter, this._backUpHistoryTableAdapter.Connection);
+                    this._backUpHistoryTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
+                    this._backUpHistoryTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
+                    if (this._backUpHistoryTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._backUpHistoryTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._backUpHistoryTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -2431,9 +2113,9 @@ namespace BackupApplication.BackUpAppDBDataSetTableAdapters {
                     this._backUpGoogleTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._backUpGoogleTableAdapter]));
                     this._backUpGoogleTableAdapter.Transaction = null;
                 }
-                if ((this._backupHistoryTableAdapter != null)) {
-                    this._backupHistoryTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._backupHistoryTableAdapter]));
-                    this._backupHistoryTableAdapter.Transaction = null;
+                if ((this._backUpHistoryTableAdapter != null)) {
+                    this._backUpHistoryTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._backUpHistoryTableAdapter]));
+                    this._backUpHistoryTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

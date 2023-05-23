@@ -30,19 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.googleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backUpNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backUpDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backUpGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backUpAppDataBaseDataSet = new BackupApplication.BackUpAppDataBaseDataSet();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.backUpAppDBDataSet = new BackupApplication.BackUpAppDBDataSet();
-            this.backUpGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backUpGoogleTableAdapter = new BackupApplication.BackUpAppDBDataSetTableAdapters.BackUpGoogleTableAdapter();
-            this.googleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backupDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backUpGoogleTableAdapter = new BackupApplication.BackUpAppDataBaseDataSetTableAdapters.BackUpGoogleTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backUpGoogleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDataBaseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -51,13 +51,41 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.googleIDDataGridViewTextBoxColumn,
-            this.fileNameDataGridViewTextBoxColumn,
-            this.backupDateDataGridViewTextBoxColumn});
+            this.backUpNameDataGridViewTextBoxColumn,
+            this.backUpDateDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.backUpGoogleBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 67);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(447, 175);
+            this.dataGridView1.Size = new System.Drawing.Size(376, 175);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // googleIDDataGridViewTextBoxColumn
+            // 
+            this.googleIDDataGridViewTextBoxColumn.DataPropertyName = "GoogleID";
+            this.googleIDDataGridViewTextBoxColumn.HeaderText = "GoogleID";
+            this.googleIDDataGridViewTextBoxColumn.Name = "googleIDDataGridViewTextBoxColumn";
+            // 
+            // backUpNameDataGridViewTextBoxColumn
+            // 
+            this.backUpNameDataGridViewTextBoxColumn.DataPropertyName = "BackUpName";
+            this.backUpNameDataGridViewTextBoxColumn.HeaderText = "BackUpName";
+            this.backUpNameDataGridViewTextBoxColumn.Name = "backUpNameDataGridViewTextBoxColumn";
+            // 
+            // backUpDateDataGridViewTextBoxColumn
+            // 
+            this.backUpDateDataGridViewTextBoxColumn.DataPropertyName = "BackUpDate";
+            this.backUpDateDataGridViewTextBoxColumn.HeaderText = "BackUpDate";
+            this.backUpDateDataGridViewTextBoxColumn.Name = "backUpDateDataGridViewTextBoxColumn";
+            // 
+            // backUpGoogleBindingSource
+            // 
+            this.backUpGoogleBindingSource.DataMember = "BackUpGoogle";
+            this.backUpGoogleBindingSource.DataSource = this.backUpAppDataBaseDataSet;
+            // 
+            // backUpAppDataBaseDataSet
+            // 
+            this.backUpAppDataBaseDataSet.DataSetName = "BackUpAppDataBaseDataSet";
+            this.backUpAppDataBaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox1
             // 
@@ -87,7 +115,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(366, 12);
+            this.button2.Location = new System.Drawing.Point(295, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 36);
             this.button2.TabIndex = 4;
@@ -95,43 +123,15 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // backUpAppDBDataSet
-            // 
-            this.backUpAppDBDataSet.DataSetName = "BackUpAppDBDataSet";
-            this.backUpAppDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // backUpGoogleBindingSource
-            // 
-            this.backUpGoogleBindingSource.DataMember = "BackUpGoogle";
-            this.backUpGoogleBindingSource.DataSource = this.backUpAppDBDataSet;
-            // 
             // backUpGoogleTableAdapter
             // 
             this.backUpGoogleTableAdapter.ClearBeforeFill = true;
-            // 
-            // googleIDDataGridViewTextBoxColumn
-            // 
-            this.googleIDDataGridViewTextBoxColumn.DataPropertyName = "GoogleID";
-            this.googleIDDataGridViewTextBoxColumn.HeaderText = "GoogleID";
-            this.googleIDDataGridViewTextBoxColumn.Name = "googleIDDataGridViewTextBoxColumn";
-            // 
-            // fileNameDataGridViewTextBoxColumn
-            // 
-            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.HeaderText = "FileName";
-            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
-            // 
-            // backupDateDataGridViewTextBoxColumn
-            // 
-            this.backupDateDataGridViewTextBoxColumn.DataPropertyName = "BackupDate";
-            this.backupDateDataGridViewTextBoxColumn.HeaderText = "BackupDate";
-            this.backupDateDataGridViewTextBoxColumn.Name = "backupDateDataGridViewTextBoxColumn";
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 254);
+            this.ClientSize = new System.Drawing.Size(401, 254);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -143,8 +143,8 @@
             this.Text = "Загрузка с Google Disk";
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backUpGoogleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backUpAppDataBaseDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,11 +157,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private BackUpAppDBDataSet backUpAppDBDataSet;
+        private BackUpAppDataBaseDataSet backUpAppDataBaseDataSet;
         private System.Windows.Forms.BindingSource backUpGoogleBindingSource;
-        private BackUpAppDBDataSetTableAdapters.BackUpGoogleTableAdapter backUpGoogleTableAdapter;
+        private BackUpAppDataBaseDataSetTableAdapters.BackUpGoogleTableAdapter backUpGoogleTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn googleIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backupDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn backUpNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn backUpDateDataGridViewTextBoxColumn;
     }
 }

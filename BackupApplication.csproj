@@ -242,10 +242,15 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackUpAppDBDataSet.Designer.cs">
+    <Compile Include="BackUpAppDataBaseDataSet.cs">
+      <DependentUpon>BackUpAppDataBaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="BackUpAppDataBaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BackUpAppDBDataSet.xsd</DependentUpon>
+      <DependentUpon>BackUpAppDataBaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -284,16 +289,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="BackUpAppDBDataSet.xsc">
-      <DependentUpon>BackUpAppDBDataSet.xsd</DependentUpon>
+    <None Include="BackUpAppDataBaseDataSet.xsc">
+      <DependentUpon>BackUpAppDataBaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="BackUpAppDBDataSet.xsd">
+    <None Include="BackUpAppDataBaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BackUpAppDBDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>BackUpAppDataBaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="BackUpAppDBDataSet.xss">
-      <DependentUpon>BackUpAppDBDataSet.xsd</DependentUpon>
+    <None Include="BackUpAppDataBaseDataSet.xss">
+      <DependentUpon>BackUpAppDataBaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -318,7 +326,7 @@
     <None Include="Resources\folder-_1_.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BackUpAppDB.accdb">
+    <Content Include="BackUpAppDataBase.accdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

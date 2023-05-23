@@ -105,9 +105,8 @@ namespace BackupApplication
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDBDataSet.BackUpGoogle". При необходимости она может быть перемещена или удалена.
-            this.backUpGoogleTableAdapter.Fill(this.backUpAppDBDataSet.BackUpGoogle);
-
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDataBaseDataSet.BackUpGoogle". При необходимости она может быть перемещена или удалена.
+            this.backUpGoogleTableAdapter.Fill(this.backUpAppDataBaseDataSet.BackUpGoogle);
         }
     }
 }
