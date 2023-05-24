@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.googleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backUpNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backUpDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backUpGoogleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.backUpAppDataBaseDataSet = new BackupApplication.BackUpAppDataBaseDataSet();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.backUpGoogleTableAdapter = new BackupApplication.BackUpAppDataBaseDataSetTableAdapters.BackUpGoogleTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backUpGoogleBindingSource)).BeginInit();
@@ -58,6 +58,42 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(376, 175);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(180, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(198, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 20);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "обзор";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Место для загрузки";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(295, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 36);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Загрузить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // googleIDDataGridViewTextBoxColumn
             // 
@@ -86,42 +122,6 @@
             // 
             this.backUpAppDataBaseDataSet.DataSetName = "BackUpAppDataBaseDataSet";
             this.backUpAppDataBaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(207, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 20);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "folder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Место для загрузки";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(295, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 36);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Загрузить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // backUpGoogleTableAdapter
             // 

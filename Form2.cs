@@ -32,7 +32,8 @@ namespace BackupApplication
         string zipFilePathAuto = "";
         string googleDriveFolderId = "";
         string GoogleFileID = "";
-        bool isBackupCompleted = false;
+        bool isBackupGoogleCompleted = false; // флаг выполнения итерации сохранения в google
+        bool isBackupLocallyCompleted = false; // флаг выполения итерации сохранения в локаль
 
         public Form2()
         {
@@ -79,9 +80,9 @@ namespace BackupApplication
                 var file = request.ResponseBody;
                 GoogleFileID = file.Id;
                 Console.WriteLine("File ID: " + file.Id);
-                if (!isBackupCompleted)
+                if (!isBackupGoogleCompleted)
                 {
-                    isBackupCompleted = true;
+                    isBackupGoogleCompleted = true;
                     MessageBox.Show("Резервное копирование на Google Disk выполнено успешно.");
                     AddGoogleFileData(zipFileName, GoogleFileID);
                 } 
@@ -102,8 +103,11 @@ namespace BackupApplication
                 zipFilePathAuto = zipFilePath;
                 // Создание ZIP-файла
                 ZipFile.CreateFromDirectory(sourceFolderPath, zipFilePath);
-
-                MessageBox.Show("ZIP-файл успешно создан и сохранен.");
+                if (!isBackupLocallyCompleted)
+                {
+                    isBackupLocallyCompleted = true;
+                    MessageBox.Show("ZIP-файл успешно создан и сохранен.");
+                }
             }
             catch (Exception ex)
             {
@@ -200,20 +204,51 @@ namespace BackupApplication
 
         public void AutoTimerGoogleDrive(int min)
         {
-            timer = new System.Timers.Timer();
-            timer.Interval = 6000; // Интервал в миллисекундах (здесь 60 минут)
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-        }
-
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
-            bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
 
             if (saveToDatabase)
             {
                 SaveZipToGoogleDrive(sourceFolderPath, zipFilePathAuto, googleDriveFolderId);
+            }
+
+            timer = new System.Timers.Timer();
+            timer.Interval = min * 60000; // Интервал в миллисекундах (здесь 60 минут)
+            timer.Elapsed += Timer_GoogleElapsed;
+            timer.Start();
+        }
+
+        public void AutoTimerLocally(int min)
+        {
+            bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
+
+            if (saveLocally)
+            {
+                SaveZipLocally(sourceFolderPath, zipFilePath);
+            }
+
+            timer = new System.Timers.Timer();
+            timer.Interval = 6000; // Интервал в миллисекундах (здесь 60 минут)
+            timer.Elapsed += Timer_LocallyElapsed;
+            timer.Start();
+        }
+
+        private void Timer_GoogleElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
+
+            if (saveToDatabase)
+            {
+                SaveZipToGoogleDrive(sourceFolderPath, zipFilePathAuto, googleDriveFolderId);
+            }
+        }
+
+        private void Timer_LocallyElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
+
+            if (saveLocally)
+            {
+                SaveZipLocally(sourceFolderPath, zipFilePath);
             }
         }
 
@@ -222,7 +257,8 @@ namespace BackupApplication
         {
             bool saveToDatabase = checkBox1.Checked; // Флаг сохранения в базу данных
             bool saveLocally = checkBox2.Checked; // Флаг сохранения локально
-            bool autoSave = checkBox3.Checked; // Флаг на автосохранение
+            bool checkAutoTimerLocally = checkBox4.Checked; // Флаг на автосохранение локально
+            bool chekAutoTimerGoogleDrive = checkBox3.Checked; // Флаг сохранения в базу данных
             googleDriveFolderId = textBox3.Text; // 15Bslce3Fpqzg3DiG73xOEIHwZ251FHeI
             int min = 11;
 
@@ -238,9 +274,9 @@ namespace BackupApplication
 
                 if (saveLocally)
                 {
-                    if (autoSave)
+                    if (checkAutoTimerLocally)
                     {
-                        SaveZipLocally(sourceFolderPath, zipFilePath);
+                        AutoTimerLocally(min);
                     }
                     else
                     {
@@ -254,7 +290,7 @@ namespace BackupApplication
                     {
                         MessageBox.Show("Пожалуйста, заполните все текстовые поля");
                     }
-                    if (autoSave)
+                    if (chekAutoTimerGoogleDrive)
                     {
                         if (min <= 10)
                         {

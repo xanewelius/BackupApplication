@@ -9,14 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BackupApplication
 {
     public partial class Form1 : Form
     {
-        public static string connect = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
-        private OleDbConnection myconnect;
-        OleDbCommand command;
+        // Строка подключения к базе данных Microsoft Access
+        string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
 
         public Form1()
         {
@@ -46,24 +46,58 @@ namespace BackupApplication
             {
                 try
                 {
-                    // Строка подключения к базе данных Microsoft Access
-                    string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
+                    int fileIdToDelete = Convert.ToInt32(textBox1.Text);
 
                     // SQL-запрос на удаление записи по идентификатору
-                    string query = "DELETE FROM BackUpHistory WHERE id = @Id";
+                    string deleteQuery = "DELETE FROM BackUpHistory WHERE IDProc = @IDProc";
+                    string selectQuery = "SELECT FileName, SecondBackupPath FROM BackUpHistory WHERE IDProc = @IDProc";
 
                     using (OleDbConnection connection = new OleDbConnection(connectionString))
                     {
                         // Открываем соединение с базой данных
                         connection.Open();
 
-                        using (OleDbCommand command = new OleDbCommand(query, connection))
+                        // Получаем имя файла из базы данных
+                        string fileName = string.Empty;
+                        string filePath = string.Empty;
+                        using (OleDbCommand selectCommand = new OleDbCommand(selectQuery, connection))
+                        {
+                            selectCommand.Parameters.AddWithValue("@IDProc", fileIdToDelete);
+                            using (OleDbDataReader reader = selectCommand.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    fileName = reader["FileName"].ToString();
+                                    filePath = reader["SecondBackupPath"].ToString();
+                                }
+                            }
+                        }
+
+                        using (OleDbCommand deleteCommand = new OleDbCommand(deleteQuery, connection))
                         {
                             // Параметр запроса
-                            command.Parameters.AddWithValue("@Id", textBox1.Text);
+                            deleteCommand.Parameters.AddWithValue("@IDProc", fileIdToDelete);
 
-                            // Выполняем запрос
-                            command.ExecuteNonQuery();
+                            // Выполняем запрос на удаление записи
+                            deleteCommand.ExecuteNonQuery();
+                        }
+
+                        // Проверяем, есть ли имя файла
+                        if (!string.IsNullOrEmpty(fileName))
+                        {
+                            string endFilePath = Path.Combine(filePath, fileName); // Соединяем имя файла с путем до файла
+
+                            // Удаляем файл из системы
+                            File.Delete(endFilePath);
+                        }
+
+                        // После удаления данных, загружаем обновленные данные из базы данных в DataGridView
+                        string selectAllQuery = "SELECT * FROM BackUpHistory";
+                        using (OleDbDataAdapter adapter = new OleDbDataAdapter(selectAllQuery, connection))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            dataGridView1.DataSource = dataTable;
                         }
                     }
                     MessageBox.Show("Удаление прошло успешно!");
@@ -71,10 +105,12 @@ namespace BackupApplication
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка при удаление данных: " + ex.Message);
+                    MessageBox.Show("Ошибка при удалении данных: " + ex.Message);
                 }
             }
         }
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
