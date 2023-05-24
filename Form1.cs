@@ -25,7 +25,7 @@ namespace BackupApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2(this);
             form2.Show(); // Show для того, чтобы можно было свернуть вкладку а не все приложение
         }
 
@@ -101,13 +101,13 @@ namespace BackupApplication
                         }
                     }
                     MessageBox.Show("Удаление прошло успешно!");
-                    Update();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ошибка при удалении данных: " + ex.Message);
                 }
             }
+            RefreshDataGridView();
         }
 
 
@@ -115,12 +115,6 @@ namespace BackupApplication
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "backUpAppDataBaseDataSet.BackUpHistory". При необходимости она может быть перемещена или удалена.
-            this.backUpHistoryTableAdapter.Fill(this.backUpAppDataBaseDataSet.BackUpHistory);
-        }
-
-        private void Update()
-        {
-            this.backUpHistoryTableAdapter.Update(this.backUpAppDataBaseDataSet.BackUpHistory);
             this.backUpHistoryTableAdapter.Fill(this.backUpAppDataBaseDataSet.BackUpHistory);
         }
 
@@ -132,7 +126,22 @@ namespace BackupApplication
 
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Update();
+            RefreshDataGridView();
+        }
+
+        public void RefreshDataGridView()
+        {
+            // Обновляем данные в DataGridView
+            string selectAllQuery = "SELECT * FROM BackUpHistory";
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                using (OleDbDataAdapter adapter = new OleDbDataAdapter(selectAllQuery, connection))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace BackupApplication
 {
     public partial class Form2 : Form
     {
+        private Form1 form1; // ссылка на form1
         private System.Timers.Timer timer;
         // Строка подключения к базе данных Microsoft Access
         public static string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BackUpAppDataBase.accdb";
@@ -35,9 +36,10 @@ namespace BackupApplication
         bool isBackupGoogleCompleted = false; // флаг выполнения итерации сохранения в google
         bool isBackupLocallyCompleted = false; // флаг выполения итерации сохранения в локаль
 
-        public Form2()
+        public Form2(Form1 form1)
         {
             InitializeComponent();
+            this.form1 = form1;
         }
 
         private void SaveZipToGoogleDrive(string sourceFolderPath, string zipFilePath, string googleDriveFolderId)
@@ -83,7 +85,7 @@ namespace BackupApplication
                 if (!isBackupGoogleCompleted)
                 {
                     isBackupGoogleCompleted = true;
-                    MessageBox.Show("Резервное копирование на Google Disk выполнено успешно.");
+                    MessageBox.Show("Резервное копирование в Google Disk выполнено успешно.");
                     AddGoogleFileData(zipFileName, GoogleFileID);
                 } 
             }
@@ -309,6 +311,7 @@ namespace BackupApplication
                 }
                 AddFileData(zipFileName, sourceFolderPath, zipFilePath, GoogleFileID);
             }
+            form1.RefreshDataGridView();
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -359,5 +362,6 @@ namespace BackupApplication
                 textBox4.Enabled = false;
             }
         }
+
     }
 }
