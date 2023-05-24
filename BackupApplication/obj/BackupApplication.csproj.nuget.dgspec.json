@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {}
+    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {}
   },
   "projects": {
-    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {
+    "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication\\BackupApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
+        "projectUniqueName": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
         "projectName": "BackupApplication",
-        "projectPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
+        "projectPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication\\BackupApplication.csproj",
         "packagesPath": "C:\\Users\\slkip\\.nuget\\packages\\",
-        "outputPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\obj\\",
+        "outputPath": "X:\\gradwork\\BackupApplication\\BackupApplication\\BackupApplication\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
