@@ -48,7 +48,7 @@ namespace BackupApplication
 
             try
             {
-                using (var stream = new FileStream("X:\\gradwork\\BackupApplication\\client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
+                using (var stream = new FileStream("client_secret_305646777020-5n13elsb83g3n7oanut1m1cksrrrkej5.apps.googleusercontent.com.json", FileMode.Open, FileAccess.Read))
                 {
                     string credPath = "path_to_store_token.json";
                     credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
